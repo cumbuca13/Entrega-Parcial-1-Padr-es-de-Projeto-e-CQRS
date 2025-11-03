@@ -1,6 +1,6 @@
 # Sistema de Atendimento - Clínica Odontológica
 
-## 📌 Apresentação do Projeto Integrador - Etapa 1 (Foco Back-End) 
+## 📌 Entrega Parcial 1: Padrões de Projeto e CQRS 
 
 ## 📌 Link do Vídeo de apresentação: https://youtu.be/MfnLnJlE7F0
 
