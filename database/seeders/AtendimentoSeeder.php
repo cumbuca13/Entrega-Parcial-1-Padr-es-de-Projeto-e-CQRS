@@ -19,7 +19,7 @@ class AtendimentoSeeder extends Seeder
                 Atendimento::create([
                     'paciente_id' => $paciente->id,
                     'dentista_id' => $dentista->id,
-                    'data_atendimento' => now()->addDays(rand(1, 30)),
+                    'data' => now()->addDays(rand(1, 30)),
                     'descricao' => 'Consulta de rotina',
                     'status' => 'Agendado'
                 ]);

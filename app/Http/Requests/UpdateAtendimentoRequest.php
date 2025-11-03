@@ -16,7 +16,7 @@ class UpdateAtendimentoRequest extends FormRequest
         return [
             'paciente_id' => 'sometimes|exists:pacientes,id',
             'dentista_id' => 'sometimes|exists:dentistas,id',
-            'data_atendimento' => 'sometimes|date',
+            'data' => 'sometimes|date',
             'descricao' => 'nullable|string',
             'status' => 'sometimes|in:Agendado,Concluído,Cancelado',
         ];

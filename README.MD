@@ -36,6 +36,26 @@ O projeto segue a estrutura padrão do Laravel:
 - **Testes Automatizados:** `tests/Feature` e `tests/Unit`
 - **Rotas API:** `routes/api.php`
 
+## Padrões de Projeto (adicionado)
+
+
+Este repositório recebeu pequenas refatorações para demonstrar a aplicação de padrões de projeto e princípios SOLID:
+
+
+- **Factory Method**: `App\Services\AtendimentoFactory` — centraliza a criação de objetos `Atendimento` (facilita criação de tipos diferentes e segue OCP).
+
+
+- **Strategy**: `App\Strategies\SchedulingStrategyInterface` com implementações `NoOverlapSchedulingStrategy` e `SimpleSchedulingStrategy` — permite trocar a regra de agendamento sem alterar a lógica de criação (DIP, OCP).
+
+
+- **CQRS (inicial)**: comandos (`App\Commands\CreateAtendimentoCommand`) e queries (`App\Queries\GetAtendimentosQuery`) com handlers — separação entre escrita e leitura, facilitando testes e evoluções futuras.
+
+
+- **Injeção de Dependência**: registramos `App\Providers\PatternServiceProvider` que faz o binding das estratégias e handlers, reduzindo acoplamento e favorecendo testes.
+
+
+As mudanças foram feitas com foco em clareza pedagógica e baixo impacto na arquitetura atual do projeto.
+
 ---
 
 ## 🚀 Como Executar

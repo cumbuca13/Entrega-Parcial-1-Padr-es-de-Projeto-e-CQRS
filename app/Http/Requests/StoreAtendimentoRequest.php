@@ -16,7 +16,7 @@ class StoreAtendimentoRequest extends FormRequest
         return [
             'paciente_id' => 'required|exists:pacientes,id',
             'dentista_id' => 'required|exists:dentistas,id',
-            'data_atendimento' => 'required|date',
+            'data' => 'required|date',
             'descricao' => 'nullable|string',
             'status' => 'nullable|in:Agendado,Concluído,Cancelado',
         ];

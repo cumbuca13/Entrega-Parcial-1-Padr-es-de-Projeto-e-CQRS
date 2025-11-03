@@ -12,7 +12,7 @@ class Atendimento extends Model
     protected $fillable = [
         'paciente_id',
         'dentista_id',
-        'data_atendimento',
+        'data',
         'descricao',
         'status'
     ];

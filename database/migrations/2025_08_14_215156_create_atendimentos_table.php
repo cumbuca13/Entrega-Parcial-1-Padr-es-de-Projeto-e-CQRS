@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('paciente_id')->constrained('pacientes')->onDelete('cascade');
             $table->foreignId('dentista_id')->constrained('dentistas')->onDelete('cascade');
-            $table->dateTime('data_atendimento');
+            $table->dateTime('data');
             $table->text('descricao');
             $table->enum('status', ['Agendado', 'Concluído', 'Cancelado'])->default('Agendado');
             $table->timestamps();

@@ -1,38 +1,39 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Atendimento;
-use App\Http\Requests\StoreAtendimentoRequest;
-use App\Http\Requests\UpdateAtendimentoRequest;
+use Illuminate\Http\Request;
+use App\Commands\CreateAtendimentoCommand;
+use App\Handlers\CreateAtendimentoHandler;
+use App\Queries\GetAtendimentosQuery;
+use App\Handlers\GetAtendimentosHandler;
 
 class AtendimentoController extends Controller
 {
-    public function index()
-    {
-        return response()->json(Atendimento::with(['paciente', 'dentista'])->paginate(10));
-    }
+private CreateAtendimentoHandler $createHandler;
+private GetAtendimentosHandler $getHandler;
 
-    public function show(Atendimento $atendimento)
-    {
-        return response()->json($atendimento->load(['paciente', 'dentista']));
-    }
+public function __construct(CreateAtendimentoHandler $createHandler, GetAtendimentosHandler $getHandler)
+{
+$this->createHandler = $createHandler;
+$this->getHandler = $getHandler;
+}
 
-    public function store(StoreAtendimentoRequest $request)
-    {
-        $atendimento = Atendimento::create($request->validated());
-        return response()->json($atendimento->load(['paciente','dentista']), 201);
-    }
+public function index(Request $request)
+{
+$dentistaId = $request->query('dentista_id');
+$query = new GetAtendimentosQuery($dentistaId);
+$result = $this->getHandler->handle($query);
 
-    public function update(UpdateAtendimentoRequest $request, Atendimento $atendimento)
-    {
-        $atendimento->update($request->validated());
-        return response()->json($atendimento->load(['paciente','dentista']));
-    }
+return response()->json($result);
+}
 
-    public function destroy(Atendimento $atendimento)
-    {
-        $atendimento->delete();
-        return response()->noContent();
-    }
+public function store(Request $request)
+{
+$payload = $request->only(['paciente_id','dentista_id','data','descricao','online','status']);
+
+$command = new CreateAtendimentoCommand($payload);
+$atendimento = $this->createHandler->handle($command);
+
+return response()->json($atendimento, 201);
+}
 }
