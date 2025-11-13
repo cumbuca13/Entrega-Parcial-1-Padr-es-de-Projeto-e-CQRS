@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
-use App\Strategies\SchedulingStrategyInterface;
+use App\Contracts\Strategies\SchedulingStrategyInterface;
 use App\Strategies\NoOverlapSchedulingStrategy;
 
 class PatternServiceProvider extends ServiceProvider

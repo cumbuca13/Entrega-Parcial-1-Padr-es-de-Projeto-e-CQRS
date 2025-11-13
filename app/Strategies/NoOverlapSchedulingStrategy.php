@@ -1,6 +1,7 @@
 <?php
 namespace App\Strategies;
 use App\Models\Atendimento;
+use App\Contracts\Strategies\SchedulingStrategyInterface;
 
 class NoOverlapSchedulingStrategy implements SchedulingStrategyInterface
 {
